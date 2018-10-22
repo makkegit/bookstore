@@ -53,7 +53,7 @@ public class BookController {
 	}
 	
 //	add new book Admin
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	 @RequestMapping(value = "/add")
     public String addBook(Model model){
     	model.addAttribute("student", new Book());
@@ -66,11 +66,11 @@ public class BookController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String save(Book book){
         brepository.save(book);
-        return "redirect:booklist";
+        return "redirect:/booklist";
     }    
 
     // delete
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
     	brepository.deleteById(bookId);

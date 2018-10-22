@@ -20,7 +20,7 @@ public class UserController {
 	@Autowired
     private UserRepository urepository; 
 	
-    @RequestMapping(value = "signup")
+    @RequestMapping(value = "/signup")
     public String addBook(Model model){
     	model.addAttribute("signupform", new SignupForm());
         return "signup";
@@ -62,7 +62,7 @@ public class UserController {
     	else {
     		return "signup";
     	}
-    	return "redirect:/login";    	
+    	return "redirect:.../login";    	
     }    
     
 }
