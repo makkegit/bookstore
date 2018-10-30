@@ -28,10 +28,10 @@ public class BookController {
 	
 	// all - login
 	
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
-	}
+	} 
 	
 	// all
 	@RequestMapping(value="/booklist")
@@ -53,11 +53,11 @@ public class BookController {
 	}
 	
 //	add new book Admin
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	 @RequestMapping(value = "/add")
     public String addBook(Model model){
-    	model.addAttribute("student", new Book());
-    	model.addAttribute("departments", crepository.findAll());
+    	model.addAttribute("book", new Book());
+    	model.addAttribute("categories", crepository.findAll());
         return "addbook";
     }   
      
@@ -70,11 +70,11 @@ public class BookController {
     }    
 
     // delete
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteBook(@PathVariable("id") Long bookId, Model model) {
     	brepository.deleteById(bookId);
-        return "redirect:../booklist";
+        return "redirect:/booklist";
 	}
 
 }

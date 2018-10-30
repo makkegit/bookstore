@@ -26,7 +26,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		    <th>Year</th>
 		    <th></th>
 		</tr>  
-    	<tr th:each = "book : ${books}">
+    	<tr th:each = "book: ${books}">
     		<td th:text="${book.author}"></td>
     		<td th:text="${book.title}"></td>
     		<td th:text="${book.category.name}"></td> 
